@@ -4,6 +4,8 @@ An append-only, hash-chained JSONL audit trail for AI agents: every decision, to
 
 **Confidence: High (85%)** that the four event types plus rollback linkage cover the audit-relevant moments of a tool-using agent loop; **Medium (55%)** that SHA-256 chaining alone is the right trust model for your threat model — it detects *post-hoc* tampering but proves nothing about the appender [estimated].
 
+<p align="center"><img src="docs/demo.gif" alt="demo" width="720"></p>
+
 ## Problem
 
 Agents take consequential actions, then the story of *why* lives in scrollback. When an audit, a postmortem, or an angry user asks "which decision led to that deletion?", teams discover their logs are editable text with no integrity property. The adjacent ecosystem knows this: wdh107/agent-audit-trail (4★ as of 2026-10-11) ships a spec + reference SDK centered on recording decision chains, kanson1996/agent-audit-trail (4★) generates hash-chained JSONL for tamper-evidence, and sunh3997-eng/AgentAuditTrail (0★) is a full audit platform — all anchor the same need, but none combines a *validated event-type schema* (rollback events must point at the event they undo) with gap/reorder discrimination in a single-file, zero-dependency implementation. That combination is this repo.
